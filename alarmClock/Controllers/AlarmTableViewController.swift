@@ -14,6 +14,15 @@ protocol AlarmTableViewCellDelegate: class {
     func alarmWasToggled(sender: AlarmTableViewCell)
 }
 
+class OtherDummyClass: AlarmTableViewCellDelegate{
+    
+    func alarmWasToggled(sender: AlarmTableViewCell) {
+        print("This function does nothing. But guess what....  I still conform to the protocol")
+    }
+    
+    
+}
+
 class AlarmTableViewController: UITableViewController, AlarmTableViewCellDelegate, AlarmScheduler {
     
     func alarmWasToggled(sender: AlarmTableViewCell) {

@@ -97,10 +97,19 @@ protocol AlarmScheduler: class {
 
 extension AlarmScheduler {
     func scheduleUserNotification(for alarm: Alarm) {
+        
+        let action = UNNotificationAction(identifier: "GetUp", title: "I'm ready to get up!", options: [])
+        
+        let category = UNNotificationCategory(identifier: "ready", actions: [action], intentIdentifiers: [], options: [.customDismissAction])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        
+    
+        
         let content = UNMutableNotificationContent()
         content.body = "Your alarm named \(alarm.alarmTitle) is going off!"
         content.title = "time to get up"
         content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "ready"
         
         let components = Calendar.current.dateComponents([.hour, .minute, .second], from: alarm.alarmTime)
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)

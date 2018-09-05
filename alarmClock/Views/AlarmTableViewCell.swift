@@ -10,6 +10,7 @@ import UIKit
 
 
 
+
 class AlarmTableViewCell: UITableViewCell {
     
     /// landing Pad
@@ -19,7 +20,7 @@ class AlarmTableViewCell: UITableViewCell {
         }
     }
     
-    weak var delegate: AlarmTableViewCellDelegate?
+    weak var delegate: AlarmTableViewController?
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -37,7 +38,7 @@ class AlarmTableViewCell: UITableViewCell {
 
     func updateViews() {
         guard let alarm = alarm else { return }
-        timeLabel.text = alarm.alarmTitle
+        timeLabel.text = alarm.alarmString
         titleLabel.text = alarm.alarmTitle
         toggleSwitch.isOn = alarm.isOn
     }
